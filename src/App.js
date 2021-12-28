@@ -1,7 +1,7 @@
 import './App.css';
-import CommentList from './components/CommentList';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import CommentDetails from './components/CommentDetails';
+import PostList from './components/PostList';
+import PostDetails from './components/PostDetails';
 
 function App() {
 
@@ -16,8 +16,8 @@ function App() {
 
         <div className="ui raised very padded text container segment">
           <Routes>
-            <Route path="/" exact element={<CommentList />} />
-            <Route path="/posts/:id" element={<CommentDetails />} />
+            <Route path="/" exact element={<PostList />} />
+            <Route path="/posts/:id" element={<PostDetails />} />
           </Routes>
 
         </div >

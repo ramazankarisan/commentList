@@ -4,10 +4,9 @@ import moment from 'moment'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const CommentList = () => {
+const PostList = () => {
 
   const [commentList, setCommentList] = useState([]);
-
 
   useEffect(() => {
     axios.get(`https://react-yazi-yorum.herokuapp.com/posts`)
@@ -32,4 +31,4 @@ const CommentList = () => {
   )
 }
 
-export default CommentList
+export default PostList

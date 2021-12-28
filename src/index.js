@@ -1,12 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import PostState from './context/PostState';
+
+
 
 
 ReactDOM.render(
-  <React.StrictMode>
+  <PostState>
     <App />
-  </React.StrictMode>,
+  </PostState>
+
+  ,
   document.getElementById('root')
 );
 
