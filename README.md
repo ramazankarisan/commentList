@@ -9,3 +9,5 @@
 -   Initially we get the data from **api** by using `axios.get('')`.
 -   By using **semantic.ui** list templates _-for right now-_ returned that data inside the **app.js**.
 -   I used also the [momentJS](https://momentjs.com/) library to format the date that I got from api, so we could see them in a more clearer way.
+-   I created 2 different components. One of them **commentList** that shows all the posts from th api and when I click one of them, it shows me **commentDetail** component.
+-   I used `react-router-dom` to navigate between the home page and details for the posts.
