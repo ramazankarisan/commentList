@@ -12,6 +12,8 @@ const PostState = (props) => {
   const [parameter, setParameter] = useState('')
 
 
+
+
   const handleCommentSubmit = (e) => {
     e.preventDefault();
     api().post(`/posts/${parameter}/comments`, commentBody)
@@ -35,10 +37,11 @@ const PostState = (props) => {
         setComments(responses[1].data)
       })
       .catch(error => console.log(error))
-  }, [parameter]);
+  }, [parameter, commentDetail]);
+
 
   return (
-    <PostContext.Provider value={{ handleCommentSubmit, handleOnChange, comments, commentDetail, setCommentDetail, commentBody, setParameter }}>
+    <PostContext.Provider value={{ handleCommentSubmit, handleOnChange, comments, commentDetail, setCommentDetail, commentBody, setParameter, parameter }}>
       {props.children}
     </PostContext.Provider>
   )

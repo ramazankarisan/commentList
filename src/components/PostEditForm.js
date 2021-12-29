@@ -1,33 +1,32 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { api } from '../api'
+import PostContext from '../context/PostContext'
 
 
-const INITIAL_POST = { title: '', content: '' }
 
-const PostForm = () => {
-
-
+const PostEditForm = () => {
   const navigate = useNavigate()
-  const [post, setPost] = useState(INITIAL_POST)
+  const { parameter, commentDetail } = useContext(PostContext);
   const [error, setError] = useState('')
+  const [post, setPost] = useState({ title: commentDetail.title || "", content: commentDetail.content || "" })
 
   const onInputChange = (e) => {
     setPost({ ...post, [e.target.name]: e.target.value })
   }
 
-  const onFromSubmit = (e) => {
+  const onFormSubmit = (e) => {
     e.preventDefault();
     setError('')
     api()
-      .post(`/posts`, post)
-      .then(response => navigate("/")
+      .put(`/posts/${parameter}/`, post)
+      .then(response => navigate(`/posts/${parameter}`)
       )
       .catch(error => setError('Title and Content are required!'));
-    setPost(INITIAL_POST);
+    setPost({ title: "", content: "" });
+  };
 
 
-  }
   return (
     <>
       {error.length > 0 && <div class="ui error message">
@@ -35,7 +34,7 @@ const PostForm = () => {
         <p>{error}</p>
       </div>}
 
-      <form onSubmit={onFromSubmit} className="ui form">
+      <form onSubmit={onFormSubmit} className="ui form">
         <div className="field">
           <label>Post Heading</label>
 
@@ -51,4 +50,4 @@ const PostForm = () => {
   )
 }
 
-export default PostForm
+export default PostEditForm
