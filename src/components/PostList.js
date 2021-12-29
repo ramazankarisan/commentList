@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import moment from 'moment'
-import axios from 'axios';
+import { api } from "../api.js"
 import { Link } from 'react-router-dom';
 
 const PostList = () => {
@@ -9,7 +9,7 @@ const PostList = () => {
   const [commentList, setCommentList] = useState([]);
 
   useEffect(() => {
-    axios.get(`https://react-yazi-yorum.herokuapp.com/posts`)
+    api().get(`/posts`)
       .then(response => setCommentList(response.data))
   }, []);
 

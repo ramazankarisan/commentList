@@ -1,6 +1,6 @@
-import axios from 'axios'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { api } from '../api'
 
 const INITIAL_POST = { title: '', content: '' }
 
@@ -17,8 +17,8 @@ const PostForm = (props) => {
   const onFromSubmit = (e) => {
     e.preventDefault();
     setError('')
-    axios
-      .post(`https://react-yazi-yorum.herokuapp.com/posts`, post)
+    api()
+      .post(`/posts`, post)
       .then(response => navigate("/")
       )
       .catch(error => setError('Title and Content are required!'));
