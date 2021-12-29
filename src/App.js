@@ -2,6 +2,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import PostList from './components/PostList';
 import PostDetails from './components/PostDetails';
+import PostAdd from './components/PostAdd';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
           <Routes>
             <Route path="/" exact element={<PostList />} />
             <Route path="/posts/:id" element={<PostDetails />} />
+            <Route path="/postadd" element={<PostAdd />} />
           </Routes>
 
         </div >
