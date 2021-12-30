@@ -10,8 +10,7 @@ const PostState = (props) => {
   const [commentDetail, setCommentDetail] = useState({})
   const [comments, setComments] = useState([])
   const [parameter, setParameter] = useState('')
-
-
+  const [open, setOpen] = useState(false)
 
 
   const handleCommentSubmit = (e) => {
@@ -41,7 +40,7 @@ const PostState = (props) => {
 
 
   return (
-    <PostContext.Provider value={{ handleCommentSubmit, handleOnChange, comments, commentDetail, setCommentDetail, commentBody, setParameter, parameter }}>
+    <PostContext.Provider value={{ handleCommentSubmit, handleOnChange, comments, commentDetail, setCommentDetail, commentBody, setParameter, parameter, open, setOpen }}>
       {props.children}
     </PostContext.Provider>
   )
