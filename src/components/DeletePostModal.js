@@ -27,7 +27,7 @@ const DeletePostModal = () => {
 
   return (
     <>
-      <Button onClick={show} color="red">Sil</Button>
+      <Button onClick={show} color="red">Delete</Button>
       <Modal
         size="mini"
         open={open}

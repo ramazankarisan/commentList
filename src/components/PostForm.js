@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { api } from '../api'
 
 
 const INITIAL_POST = { title: '', content: '' }
 
 const PostForm = () => {
-
 
   const navigate = useNavigate()
   const [post, setPost] = useState(INITIAL_POST)
