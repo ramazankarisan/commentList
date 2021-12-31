@@ -15,6 +15,7 @@ const PostList = () => {
 
   return (
     <div className="ui relaxed divided list">
+      <Link to="/postadd" className='ui primary button'>Add Post</Link>
       {commentList.map(item => {
         return (
           <div className="item" key={item.id} >
