@@ -1,11 +1,12 @@
 
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import PostContext from '../context/PostContext'
 import CommentModal from './CommentModal';
 
 const Comments = () => {
-  const { comments, setOpen } = useContext(PostContext);
-  const [modalHelper, setModalHelper] = useState({ id: '', index: '' })
+  const { comments, setOpen, dispatch } = useContext(PostContext);
+
+
 
 
   return (
@@ -22,12 +23,12 @@ const Comments = () => {
                 <div className="description">{comment.body}</div>
                 <div className="ui buttons">
                   <button onClick={() => {
-                    setModalHelper({ id: comment.id, index: index })
+                    dispatch({ type: 'MODAL_HELPER', payload: { id: comment.id, index: index } })
                     setOpen(true)
-                    console.log(modalHelper)
+
                   }} className="ui blue button">edit</button>
                   <button className="ui red button">delete</button>
-                  <CommentModal id={comment.id} index={index} modalHelper={modalHelper} />
+                  <CommentModal id={comment.id} index={index} />
 
                 </div>
               </div>

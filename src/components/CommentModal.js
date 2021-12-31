@@ -6,35 +6,28 @@ import PostContext from '../context/PostContext'
 
 
 
-const CommentModal = ({ modalHelper }) => {
+const CommentModal = () => {
   const navigate = useNavigate()
-  const { parameter, comments, setOpen, open } = useContext(PostContext);
-
+  const { parameter, setOpen, open, state, post, setPost } = useContext(PostContext);
   const [error, setError] = useState('')
-  const [post, setPost] = useState(
-    // 'try an see'
-    { display_name: comments[modalHelper.index].display_name || "", body: comments[modalHelper.index].body || "" }
-  )
-
 
   const onInputChange = (e) => {
     setPost({ ...post, [e.target.name]: e.target.value })
   }
 
-  const onFormSubmit = (e) => {
-    e.preventDefault();
-    setError('')
-    api()
-      .put(`/posts/${parameter}/comments/${modalHelper.id}`, post)
-      .then(response => navigate(`/posts/${parameter}`)
-      )
-      .catch(error => setError('Title and Content are required!'));
+  const onFormClick = () => {
 
+    api()
+      .put(`/posts/${parameter}/comments/${state.id}`, post)
+      .then(response => {
+        setError('')
+        navigate(`/posts/${parameter}`)
+        setOpen(false)
+      }
+      )
+      .catch(error => setError('The Content is required!'));
 
   }
-
-
-
 
   return (
     <>
@@ -49,22 +42,38 @@ const CommentModal = ({ modalHelper }) => {
 
           <Modal.Description>
             <Header>Edit the Comment</Header>
-            <form onSubmit={onFormSubmit} className="ui form">
+            {error.length > 0 && <div class="ui error message">
+              <div class="header">Error</div>
+              <p>{error}</p>
+            </div>}
+
+            <form className="ui form">
               <div className="field">
                 <label>Comment</label>
 
-                <input onChange={onInputChange} name="display_name" placeholder='title' value={post.display_name} type="text" />
+                <input onChange={onInputChange} name="display_name" placeholder='title'
+                  value={post.display_name}
+                  type="text"
+                  disabled
+                />
 
               </div>
               <div className="field">
-                <textarea onChange={onInputChange} name="body" value={post.body} placeholder="content" rows="3"></textarea>
+                <textarea onChange={onInputChange} name="body"
+                  value={post.body}
+                  placeholder="content" rows="3"></textarea>
               </div>
+
 
             </form>
           </Modal.Description>
         </Modal.Content>
         <Modal.Actions>
-          <Button role="submit" color='blue' onClick={() => setOpen(false)}>
+          <Button color='blue' onClick={() => {
+            onFormClick();
+
+
+          }}>
             Send
           </Button>
           <Button

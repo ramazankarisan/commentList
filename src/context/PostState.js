@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useReducer, useState } from 'react'
 import { api } from '../api';
 import PostContext from './PostContext'
 
@@ -12,6 +12,23 @@ const PostState = (props) => {
   const [parameter, setParameter] = useState('')
   const [open, setOpen] = useState(false)
 
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case 'MODAL_HELPER':
+        return action.payload;
+      default:
+        return state;
+    }
+  }
+  const [state, dispatch] = useReducer(reducer, {})
+
+
+  const [post, setPost] = useState(
+    { display_name: '', body: '' }
+  )
+  useEffect(() => {
+    setPost((comments[state.index]?.id) ? { display_name: comments[state.index].display_name, body: comments[state.index].body } : ' error undefined')
+  }, [state])
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
@@ -40,7 +57,7 @@ const PostState = (props) => {
 
 
   return (
-    <PostContext.Provider value={{ handleCommentSubmit, handleOnChange, comments, commentDetail, setCommentDetail, commentBody, setParameter, parameter, open, setOpen }}>
+    <PostContext.Provider value={{ handleCommentSubmit, handleOnChange, comments, commentDetail, setCommentDetail, commentBody, setParameter, parameter, open, setOpen, state, dispatch, post, setPost }}>
       {props.children}
     </PostContext.Provider>
   )
