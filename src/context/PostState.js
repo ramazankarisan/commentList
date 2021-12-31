@@ -27,7 +27,14 @@ const PostState = (props) => {
     { display_name: '', body: '' }
   )
   useEffect(() => {
-    setPost((comments[state.index]?.id) ? { display_name: comments[state.index].display_name, body: comments[state.index].body } : ' error undefined')
+    let isMounted = true;
+    if (isMounted) {
+
+      setPost((comments[state.index]?.id) ? { display_name: comments[state.index].display_name, body: comments[state.index].body } : { display_name: '', body: '' })
+    }
+    return () => {
+      isMounted = false
+    }
   }, [state])
 
   const handleCommentSubmit = (e) => {

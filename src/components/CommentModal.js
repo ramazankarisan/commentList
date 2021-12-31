@@ -4,8 +4,6 @@ import { Button, Header, Modal } from 'semantic-ui-react'
 import { api } from '../api'
 import PostContext from '../context/PostContext'
 
-
-
 const CommentModal = () => {
   const navigate = useNavigate()
   const { parameter, setOpen, open, state, post, setPost } = useContext(PostContext);
@@ -71,8 +69,6 @@ const CommentModal = () => {
         <Modal.Actions>
           <Button color='blue' onClick={() => {
             onFormClick();
-
-
           }}>
             Send
           </Button>
