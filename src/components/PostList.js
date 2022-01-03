@@ -3,20 +3,23 @@ import { useState, useEffect } from 'react';
 import moment from 'moment'
 import { api } from "../api.js"
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { bringPostList } from '../store/actions/postActions.js';
 
 const PostList = () => {
+  const dispatch = useDispatch();
+  const postList = useSelector(state => state.post.postList)
 
-  const [commentList, setCommentList] = useState([]);
 
   useEffect(() => {
-    api().get(`/posts`)
-      .then(response => setCommentList(response.data))
+    dispatch(bringPostList())
   }, []);
 
   return (
-    <div className="ui relaxed divided list">
+    <div className="ui relaxed divided list test">
       <Link to="/postadd" className='ui primary button'>Add Post</Link>
-      {commentList.map(item => {
+      {postList.map(item => {
         return (
           <div className="item" key={item.id} >
             <i className="large github middle aligned icon"></i>
