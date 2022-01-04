@@ -1,15 +1,19 @@
-import React, { useContext, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { useNavigate, useParams } from 'react-router-dom'
 import { api } from '../api'
-import PostContext from '../context/PostContext'
 
 
 
 const PostEditForm = () => {
-  const navigate = useNavigate()
-  const { parameter, commentDetail } = useContext(PostContext);
+  const navigate = useNavigate();
+  const param = useParams();
+
+  // const { parameter, postList } = useContext(PostContext);
+  const postList = useSelector(state => state.post.postDetail)
+
   const [error, setError] = useState('')
-  const [post, setPost] = useState({ title: commentDetail.title || "", content: commentDetail.content || "" })
+  const [post, setPost] = useState({ title: postList.title || "", content: postList.content || "" })
 
   const onInputChange = (e) => {
     setPost({ ...post, [e.target.name]: e.target.value })
@@ -19,8 +23,8 @@ const PostEditForm = () => {
     e.preventDefault();
     setError('')
     api()
-      .put(`/posts/${parameter}/`, post)
-      .then(response => navigate(`/posts/${parameter}`)
+      .put(`/posts/${param.id}/`, post)
+      .then(response => navigate(`/posts/${param.id}`)
       )
       .catch(error => setError('Title and Content are required!'));
     setPost({ title: "", content: "" });

@@ -1,40 +1,52 @@
 
 
 import moment from 'moment';
-import React, { useContext, useEffect } from 'react'
+import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import PostContext from '../context/PostContext';
+import { bringPost } from '../store/actions/postActions';
 import CommentForm from './CommentForm';
 import Comments from './Comments';
 import DeletePostModal from './DeletePostModal';
 
 const PostDetails = () => {
-  const { commentDetail, setParameter } = useContext(PostContext)
-  const param = useParams()
+  // const { setParameter } = useContext(PostContext)
+  const param = useParams();
+  const dispatch = useDispatch();
+  const postList = useSelector(state => state.post.postDetail)
+
+
+  // const [commentDetail, setCommentDetail] = useState({})
+
+  // useEffect(() => {
+  //   let isMounted = true;
+  //   if (isMounted) {
+  //     setParameter(param.id)
+  //   }
+  //   return () => {
+  //     isMounted = false
+  //   }
+  // }, [param]);
 
   useEffect(() => {
-    let isMounted = true;
-    if (isMounted) {
-      setParameter(param.id)
-    }
-    return () => {
-      isMounted = false
-    }
-  }, [param])
+    dispatch(bringPost(param.id))
+  }, [param.id]);
+
 
   return (
     <>
-      <h2 className="ui header">{commentDetail.title}</h2>
-      <p>{moment(commentDetail.created_at).format('MMMM Do YYYY, h:mm:ss a')}</p>
+      <h2 className="ui header">{postList.title}</h2>
+      <p>{moment(postList.created_at).format('MMMM Do YYYY, h:mm:ss a')}</p>
       <div className="ui buttons">
         <Link to={`/posts/${param.id}/edit`} className="ui blue button">edit</Link>
-        <DeletePostModal />
+        <DeletePostModal id={param.id} />
 
       </div>
-      <p>{commentDetail.content}</p>
+      <p>{postList.content}</p>
 
       <Comments />
-      <CommentForm />
+      <CommentForm id={param.id} />
     </>
   )
 }

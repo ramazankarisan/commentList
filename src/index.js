@@ -8,8 +8,12 @@ import App from './App';
 import PostState from './context/PostState';
 import { allReducers } from './store/reducers/allReducers';
 
-// const composedEnhancer = compose(composeWithDevTools(), applyMiddleware(thunk))
-const store = createStore(allReducers, applyMiddleware(thunk))
+
+const composedEnhancer = compose(
+  applyMiddleware(thunk),
+  window.devToolsExtension ? window.devToolsExtension() : f => f
+)
+const store = createStore(allReducers, composedEnhancer)
 
 
 ReactDOM.render(

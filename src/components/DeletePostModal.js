@@ -4,17 +4,17 @@ import { Button, Modal } from 'semantic-ui-react'
 import { api } from '../api'
 import PostContext from '../context/PostContext'
 
-const DeletePostModal = () => {
+const DeletePostModal = ({ id }) => {
   const [open, setOpen] = useState(false)
   const show = () => setOpen(true)
   const close = () => setOpen(false)
-  const { parameter } = useContext(PostContext)
+  // const { parameter } = useContext(PostContext)
   const navigate = useNavigate();
   const [error, setError] = useState('')
 
   const handleDelete = () => {
     api()
-      .delete(`posts/${parameter}`)
+      .delete(`posts/${id}`)
       .then(() => {
         setError('')
         close();

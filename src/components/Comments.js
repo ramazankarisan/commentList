@@ -1,17 +1,19 @@
 
 import React, { useContext } from 'react'
+import { useSelector } from 'react-redux';
 import PostContext from '../context/PostContext'
 import CommentModal from './CommentModal';
 
 const Comments = () => {
-  const { comments, setOpen, dispatch } = useContext(PostContext);
+  const { setOpen, dispatch } = useContext(PostContext);
 
+  const comments = useSelector(state => state.post.postDetail.comments);
 
 
 
   return (
     <>
-      <h3>yorumlar
+      <h3>Comments
       </h3>
       {comments.map((comment, index) => {
         return (
