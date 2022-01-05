@@ -5,9 +5,9 @@ import PostContext from './PostContext'
 const PostState = (props) => {
 
   const initial_comment = { display_name: '', body: '' };
-  const [commentBody, setCommentBody] = useState(initial_comment)
+  // const [commentBody, setCommentBody] = useState(initial_comment)
   // const [commentDetail, setCommentDetail] = useState({})
-  const [comments, setComments] = useState([])
+  // const [comments, setComments] = useState([])
   // const [parameter, setParameter] = useState('')
   // const [open, setOpen] = useState(false)
 
@@ -63,7 +63,7 @@ const PostState = (props) => {
 
 
   return (
-    <PostContext.Provider value={{ comments, commentBody }}>
+    <PostContext.Provider value={{}}>
       {props.children}
     </PostContext.Provider>
   )

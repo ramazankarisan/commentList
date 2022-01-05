@@ -2,8 +2,8 @@ const INITIAL_STATE = {
   display_name: '',
   body: '',
   open: false,
-
-  comment: ''
+  comment: '',
+  commentEditError: ''
 
 };
 
@@ -21,7 +21,8 @@ export const commentReducer = (state = INITIAL_STATE, action) => {
         body: '',
         open: false,
         comment: '',
-        index: ''
+        commentEditError: ''
+
       };
     case 'COMMENT_MODAL_OPEN':
       return { ...state, body: action.comment.body, display_name: action.comment.display_name, open: true, comment: action.comment };
@@ -30,7 +31,9 @@ export const commentReducer = (state = INITIAL_STATE, action) => {
     case 'COMMENT_MODAL_CLICK':
       const comment = state.comment;
       const body = state.body
-      return { ...state, comment: { ...comment, body } }
+      return { ...state, comment: { ...comment, body }, commentEditError: '', open: false }
+    case 'COMMENT_MODAL_CLICK_ERROR':
+      return { ...state, commentEditError: action.payload, open: true }
 
     default:
       return state;

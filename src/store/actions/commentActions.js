@@ -21,8 +21,6 @@ export const commentFormInitial = () => {
 export const commentModalOpener = (comment) => {
   return {
     type: 'COMMENT_MODAL_OPEN',
-    id: comment.id,
-
     comment: comment
   }
 };
@@ -46,7 +44,7 @@ export const commentModalOnClick = (id, commentId, comment) => dispatch => {
       dispatch({ type: 'COMMENT_MODAL_CLICK' })
     }
     )
-    .catch(error => console.log('The Content is required!'));
+    .catch(error => dispatch({ type: 'COMMENT_MODAL_CLICK_ERROR', payload: 'The Content is required!' }));
 
 
 }

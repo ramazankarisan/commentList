@@ -15,7 +15,7 @@ const PostDetails = () => {
   const param = useParams();
   const dispatch = useDispatch();
   const postList = useSelector(state => state.post.postDetail)
-
+  const comment = useSelector(state => state.comment.comment)
 
   // const [commentDetail, setCommentDetail] = useState({})
 
@@ -31,7 +31,7 @@ const PostDetails = () => {
 
   useEffect(() => {
     dispatch(bringPost(param.id))
-  }, [param.id]);
+  }, [param.id, comment]);
 
 
   return (
