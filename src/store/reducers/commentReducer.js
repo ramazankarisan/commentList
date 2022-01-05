@@ -7,7 +7,6 @@ const INITIAL_STATE = {
 
 };
 
-
 export const commentReducer = (state = INITIAL_STATE, action) => {
 
   switch (action.type) {

@@ -1,19 +1,12 @@
-import React, { useContext, useEffect } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-// import PostContext from '../context/PostContext'
 import { bodyOnChange, commentFormInitial, displayNameOnChange } from '../store/actions/commentActions'
 import { handleCommentSubmit } from '../store/actions/postActions'
 
-
 const CommentForm = ({ id }) => {
-  // const { handleCommentSubmit, } = useContext(PostContext)
-
   const dispatch = useDispatch();
   const commentBody = useSelector(state => state.comment)
-  // const handleOnChange = (e) => {
-  //   setCommentBody({ ...commentBody, [e.target.name]: e.target.value })
-  // };
 
   return (
     <>

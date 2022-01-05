@@ -1,14 +1,13 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button, Modal } from 'semantic-ui-react'
 import { api } from '../api'
-import PostContext from '../context/PostContext'
+
 
 const DeletePostModal = ({ id }) => {
   const [open, setOpen] = useState(false)
   const show = () => setOpen(true)
   const close = () => setOpen(false)
-  // const { parameter } = useContext(PostContext)
   const navigate = useNavigate();
   const [error, setError] = useState('')
 

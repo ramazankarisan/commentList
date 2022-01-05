@@ -1,55 +1,25 @@
-import React, { useContext, useState } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Button, Header, Modal } from 'semantic-ui-react'
-import { api } from '../api'
-import PostContext from '../context/PostContext'
-import { bodyOnChange, commentFormInitial, commentModalClose, commentModalOnClick, commentModalOpener, displayNameOnChange } from '../store/actions/commentActions'
+import { bodyOnChange, commentFormInitial, commentModalClose, commentModalOnClick } from '../store/actions/commentActions'
 
 const CommentModal = () => {
   const param = useParams();
   const navigate = useNavigate()
-  // const { parameter, setOpen, state, post, setPost } = useContext(PostContext);
-  // const [error, setError] = useState('')
 
   const modalHandle = useSelector(state => state.comment);
   const editComment = { ...modalHandle.comment, body: modalHandle.body }
   const error = useSelector(state => state.comment.commentEditError)
-  // const commentOnClicked = useSelector(state => state.post.postDetail.comments[modalHandle.index])
-  // console.log(commentOnClicked);
+
   const dispatch = useDispatch();
-  // console.log(commentOnClicked);
-
-  // const [comment, setComment] = useState(modalHandle.comment)
-
-  // const onInputChange = (e) => {
-  //   // setComment({ ...comment, [e.target.name]: e.target.value })
-  // }
-
-  // const onFormClick = () => {
-
-  //   // api()
-  //   //   .put(`/posts/${parameter}/comments/${state.id}`, post)
-  //   //   .then(response => {
-  //   //     setError('')
-  //   //     navigate(`/posts/${parameter}`)
-  //   //     setOpen(false)
-  //   //   }
-  //   //   )
-  //   //   .catch(error => setError('The Content is required!'));
-
-  // }
 
   return (
     <>
       <Modal
-        // onClose={() => setOpen(false)}
-        // onOpen={() => setOpen(true)}
         open={modalHandle.open}
-
       >
-
         <Modal.Content image>
 
           <Modal.Description>
@@ -82,11 +52,9 @@ const CommentModal = () => {
         </Modal.Content>
         <Modal.Actions>
           <Button color='blue' onClick={() => {
-            // onFormClick();
             dispatch(commentModalOnClick(param.id, modalHandle.comment.id, editComment))
 
             if (!(error.length > 0)) {
-              console.log('error empty')
               dispatch(commentModalClose())
               dispatch(commentFormInitial());
               navigate(`/posts/${param.id}`)

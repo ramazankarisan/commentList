@@ -3,7 +3,6 @@ import PostForm from './PostForm'
 
 const PostAdd = () => {
 
-
   return (
     <>
       <h1>post add</h1>

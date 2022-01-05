@@ -1,5 +1,4 @@
 
-
 import moment from 'moment';
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
@@ -11,23 +10,11 @@ import Comments from './Comments';
 import DeletePostModal from './DeletePostModal';
 
 const PostDetails = () => {
-  // const { setParameter } = useContext(PostContext)
+
   const param = useParams();
   const dispatch = useDispatch();
   const postList = useSelector(state => state.post.postDetail)
   const comment = useSelector(state => state.comment.comment)
-
-  // const [commentDetail, setCommentDetail] = useState({})
-
-  // useEffect(() => {
-  //   let isMounted = true;
-  //   if (isMounted) {
-  //     setParameter(param.id)
-  //   }
-  //   return () => {
-  //     isMounted = false
-  //   }
-  // }, [param]);
 
   useEffect(() => {
     dispatch(bringPost(param.id))

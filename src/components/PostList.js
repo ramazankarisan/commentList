@@ -1,7 +1,6 @@
 import React from 'react'
 import { useEffect } from 'react';
 import moment from 'moment'
-
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
@@ -10,7 +9,6 @@ import { bringPostList } from '../store/actions/postActions.js';
 const PostList = () => {
   const dispatch = useDispatch();
   const postList = useSelector(state => state.post.postList)
-
 
   useEffect(() => {
     dispatch(bringPostList())

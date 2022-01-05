@@ -9,7 +9,6 @@ const PostEditForm = () => {
   const navigate = useNavigate();
   const param = useParams();
 
-  // const { parameter, postList } = useContext(PostContext);
   const postList = useSelector(state => state.post.postDetail)
 
   const [error, setError] = useState('')
