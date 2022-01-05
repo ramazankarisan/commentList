@@ -9,32 +9,32 @@ const PostState = (props) => {
   // const [commentDetail, setCommentDetail] = useState({})
   const [comments, setComments] = useState([])
   // const [parameter, setParameter] = useState('')
-  const [open, setOpen] = useState(false)
+  // const [open, setOpen] = useState(false)
 
-  const reducer = (state, action) => {
-    switch (action.type) {
-      case 'MODAL_HELPER':
-        return action.payload;
-      default:
-        return state;
-    }
-  }
-  const [state, dispatch] = useReducer(reducer, {})
+  // const reducer = (state, action) => {
+  //   switch (action.type) {
+  //     case 'MODAL_HELPER':
+  //       return action.payload;
+  //     default:
+  //       return state;
+  //   }
+  // }
+  // const [state, dispatch] = useReducer(reducer, {})
 
 
-  const [post, setPost] = useState(
-    { display_name: '', body: '' }
-  )
-  useEffect(() => {
-    let isMounted = true;
-    if (isMounted) {
+  // const [post, setPost] = useState(
+  //   { display_name: '', body: '' }
+  // )
+  // useEffect(() => {
+  //   let isMounted = true;
+  //   if (isMounted) {
 
-      setPost((comments[state.index]?.id) ? { display_name: comments[state.index].display_name, body: comments[state.index].body } : { display_name: '', body: '' })
-    }
-    return () => {
-      isMounted = false
-    }
-  }, [state])
+  //     setPost((comments[state.index]?.id) ? { display_name: comments[state.index].display_name, body: comments[state.index].body } : { display_name: '', body: '' })
+  //   }
+  //   return () => {
+  //     isMounted = false
+  //   }
+  // }, [state])
 
   // const handleCommentSubmit = (e) => {
   //   e.preventDefault();
@@ -63,7 +63,7 @@ const PostState = (props) => {
 
 
   return (
-    <PostContext.Provider value={{ comments, commentBody, open, setOpen, state, dispatch, post, setPost }}>
+    <PostContext.Provider value={{ comments, commentBody }}>
       {props.children}
     </PostContext.Provider>
   )
