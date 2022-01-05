@@ -5,7 +5,7 @@ export const bringPostList = () => dispatch => {
   api().get(`/posts`)
     .then(response => dispatch({ type: 'BRING_POST_LIST', payload: response.data }))
     .catch(dispatch({ type: 'BRING_POST_LIST_ERROR', payload: 'an error accured' }))
-}
+};
 
 export const bringPost = (parameter) => dispatch => {
   axios.all([
@@ -21,4 +21,16 @@ export const bringPost = (parameter) => dispatch => {
 
     })
     .catch(error => { dispatch({ type: 'BRING_POST_ERROR', payload: 'an error occured while the post is being loaded' }) })
-}  
+};
+export const handleCommentSubmit = (e, id, post) => dispatch => {
+  e.preventDefault();
+  api().post(`/posts/${id}/comments`, post)
+    .then(response => {
+
+      dispatch({ type: 'HANDLE_COMMENT_SUBMIT', payload: response.data })
+      // setComments([...comments, response.data])
+    }
+    )
+    .catch(error => console.log(error))
+
+} 

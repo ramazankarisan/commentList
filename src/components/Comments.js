@@ -1,5 +1,5 @@
 
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import PostContext from '../context/PostContext'
 import CommentModal from './CommentModal';

@@ -19,6 +19,11 @@ export const postReducer = (state = INITIAL_STATE, action) => {
       return { ...state, postDetail: action.payload };
     case 'BRING_POST_ERROR':
       return { ...state, postDetailError: action.payload };
+    case 'HANDLE_COMMENT_SUBMIT':
+
+      const postDetail = state.postDetail
+      const comments = postDetail.comments
+      return { ...state, postDetail: { ...postDetail, comments: [...comments, action.payload] } }
 
     default:
       return state;

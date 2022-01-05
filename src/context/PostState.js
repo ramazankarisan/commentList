@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer, useState } from 'react'
-import { api } from '../api';
+// import { api } from '../api';
 import PostContext from './PostContext'
 
 const PostState = (props) => {
@@ -8,7 +8,7 @@ const PostState = (props) => {
   const [commentBody, setCommentBody] = useState(initial_comment)
   // const [commentDetail, setCommentDetail] = useState({})
   const [comments, setComments] = useState([])
-  const [parameter, setParameter] = useState('')
+  // const [parameter, setParameter] = useState('')
   const [open, setOpen] = useState(false)
 
   const reducer = (state, action) => {
@@ -63,7 +63,7 @@ const PostState = (props) => {
 
 
   return (
-    <PostContext.Provider value={{ comments, commentBody, setParameter, parameter, open, setOpen, state, dispatch, post, setPost }}>
+    <PostContext.Provider value={{ comments, commentBody, open, setOpen, state, dispatch, post, setPost }}>
       {props.children}
     </PostContext.Provider>
   )

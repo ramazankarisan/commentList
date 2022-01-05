@@ -13,9 +13,11 @@ export const commentReducer = (state = INITIAL_STATE, action) => {
       return { ...state, display_name: action.payload };
     case 'BODY_ONCHANGE':
       return { ...state, body: action.payload };
-    case 'HANDLE_COMMENT_SUBMIT':
-      console.log(action.payload);
-      return { ...state, a: action.payload }
+    case 'COMMENT_FORM_INITIAL':
+      return {
+        display_name: '',
+        body: ''
+      };
 
     default:
       return state;
